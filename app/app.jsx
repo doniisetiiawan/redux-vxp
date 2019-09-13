@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import history from './utils/history';
 import 'sanitize.css';
 
-import App from 'containers/App';
+import App from './containers/App';
 
 import configureStore from './configureStore';
 
