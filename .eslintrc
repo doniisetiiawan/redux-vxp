@@ -9,5 +9,8 @@
     }
   },
   "plugins": ["react"],
-  "rules": {}
+  "rules": {
+    "no-console": "off",
+    "no-undef": "warn"
+  }
 }
