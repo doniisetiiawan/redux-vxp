@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-  entry: './app/app.js',
+  entry: './app/app.jsx',
   output: {
     path: path.resolve('dist'),
     filename: 'main.js',
@@ -15,6 +15,10 @@ module.exports = {
           loader: 'babel-loader',
         },
         exclude: /(node_modules|bower_components)/,
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
