@@ -19,6 +19,7 @@ const Homepage = () => (
       <MenuLink to="/login">Login</MenuLink>
       <MenuLink to="/register">Register</MenuLink>
       <MenuLink to="/contact">Contact</MenuLink>
+      <MenuLink to="/users/add">Add New User</MenuLink>
     </ul>
   </div>
 );
