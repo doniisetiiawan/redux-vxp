@@ -7,15 +7,17 @@ export default styled.div`
   background-color: #204666;
 
   & > div {
-    flex: 1;
+    flex-shrink: 0;
     display: flex;
+    align-items: center;
 
     &:last-child {
+      flex: 1;
       justify-content: flex-end;
     }
   }
 
-  & > button {
+  button {
     line-height: 0;
   }
 `;

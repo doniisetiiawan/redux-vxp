@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 
-import getInjectors from './reducerInjectors';
+import getInjectors from './sagaInjectors';
 
-export default ({ key, reducer }) => (WrappedComponent) => {
-  class ReducerInjector extends React.Component {
+export default ({ key, saga, mode }) => (WrappedComponent) => {
+  class InjectSaga extends React.Component {
     static WrappedComponent = WrappedComponent;
 
     // eslint-disable-next-line react/static-property-placement
@@ -14,7 +14,7 @@ export default ({ key, reducer }) => (WrappedComponent) => {
     };
 
     // eslint-disable-next-line react/static-property-placement
-    static displayName = `withReducer(${WrappedComponent.displayName
+    static displayName = `withSaga(${WrappedComponent.displayName
       || WrappedComponent.name
       || 'Component'})`;
 
@@ -22,9 +22,15 @@ export default ({ key, reducer }) => (WrappedComponent) => {
     injectors = getInjectors(this.context.store);
 
     componentWillMount() {
-      const { injectReducer } = this.injectors;
+      const { injectSaga } = this.injectors;
 
-      injectReducer(key, reducer);
+      injectSaga(key, { saga, mode }, this.props);
+    }
+
+    componentWillUnmount() {
+      const { ejectSaga } = this.injectors;
+
+      ejectSaga(key);
     }
 
     render() {
@@ -32,5 +38,5 @@ export default ({ key, reducer }) => (WrappedComponent) => {
     }
   }
 
-  return hoistNonReactStatics(ReducerInjector, WrappedComponent);
+  return hoistNonReactStatics(InjectSaga, WrappedComponent);
 };

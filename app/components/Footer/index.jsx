@@ -1,15 +1,29 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
-import A from '../A';
+// eslint-disable-next-line import/no-named-as-default
+import LocaleToggle from '../../containers/LocaleToggle';
 import Wrapper from './Wrapper';
+import messages from './messages';
 
 function Footer() {
   return (
     <Wrapper>
-      <section>This project is licensed under the MIT license.</section>
       <section>
-        Made with love by :
-        <A href="https://twitter.com/dr_code_skm">S.K. Mukhiya</A>
+        <FormattedMessage {...messages.licenseMessage} />
+      </section>
+      <section>
+        <LocaleToggle />
+      </section>
+      <section>
+        <FormattedMessage
+          {...messages.authorMessage}
+          values={{
+            author: (
+              <a href="https://twitter.com/dr_code_skm">S.K. Mukhiya</a>
+            ),
+          }}
+        />
       </section>
     </Wrapper>
   );

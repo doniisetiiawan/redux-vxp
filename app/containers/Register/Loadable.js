@@ -1,3 +1,7 @@
 import loadable from '@loadable/component';
 
-export default loadable(() => import('./index'));
+import LoadingIndicator from '../../components/LoadingIndicator';
+
+export default loadable(() => import('./index'), {
+  LoadingComponent: LoadingIndicator,
+});
