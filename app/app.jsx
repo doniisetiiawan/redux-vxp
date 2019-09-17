@@ -9,6 +9,7 @@ import 'sanitize.css';
 import 'antd/dist/antd.min.css';
 
 import App from './containers/App';
+import DevTools from './containers/DevTools';
 
 // eslint-disable-next-line import/no-named-as-default
 import LanguageProvider from './containers/LanguageProvider';
@@ -27,6 +28,7 @@ const render = (messages) => {
       <LanguageProvider messages={messages}>
         <ConnectedRouter history={history}>
           <App />
+          <DevTools />
         </ConnectedRouter>
       </LanguageProvider>
     </Provider>,

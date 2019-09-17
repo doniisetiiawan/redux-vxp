@@ -3,6 +3,7 @@ import { fromJS } from 'immutable';
 import { routerMiddleware } from 'connected-react-router/immutable';
 import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
+import DevTools from './containers/DevTools';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -14,7 +15,10 @@ export default function configureStore(initialState = {}, history) {
   const store = createStore(
     createReducer(),
     fromJS(initialState),
-    compose(...enhancers),
+    compose(
+      ...enhancers,
+      DevTools.instrument(),
+    ),
   );
 
   store.runSaga = sagaMiddleware.run;
